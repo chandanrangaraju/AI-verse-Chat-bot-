@@ -10,6 +10,10 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => {
+  res.send("AI-verse Chat-bot API is running 🚀");
+});
+
 app.use("/api/faq", faqRoutes);
 
 const PORT = process.env.PORT || 3000;
