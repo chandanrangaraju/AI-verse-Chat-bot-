@@ -1,25 +1,26 @@
 const express = require("express");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
 const path = require("path");
-const faqRoutes = require("./src/routes/faqRoutes");
 
 const app = express();
-app.use(express.json());
-app.use(cors());
-app.use(helmet());
-app.use(morgan("dev"));
 
-// API routes
-app.use("/api/faq", faqRoutes);
+// Serve all files in root (CSS, JS, etc.)
+app.use(express.static(__dirname));
 
-// Root route -> frontend index.html
+// Serve images folder explicitly
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
+// Serve favicon at /favicon.ico
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "images", "bot.png"));
+});
+
+// Serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
