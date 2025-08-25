@@ -11,15 +11,12 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 
-// ✅ Serve static frontend
-app.use(express.static(path.join(__dirname, "public")));
-
 // API routes
 app.use("/api/faq", faqRoutes);
 
 // Root route -> frontend index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
