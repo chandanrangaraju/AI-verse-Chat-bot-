@@ -88,7 +88,7 @@ async function askAI() {
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
   try {
-    const res = await fetch("https://ai-verse-backend.onrender.com/api/faq/ask", {
+    const res = await fetch("https://ai-verse-chat-bot.onrender.com/api/faq/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
