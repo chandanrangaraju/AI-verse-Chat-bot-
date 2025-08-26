@@ -88,10 +88,13 @@ async function askAI() {
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
   try {
-    const res = await fetch("https://ai-verse-chat-bot.onrender.com/api/faq/ask", {
+    const res = await fetch("https://ai-verse-backend.onrender.com/api/faq/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: modelSelect?.value || "openai/gpt-4o-mini", question: q })
+      body: JSON.stringify({
+        model: modelSelect?.value || "openai/gpt-4o-mini",
+        question: q
+      })
     });
 
     const data = await res.json().catch(() => ({}));
